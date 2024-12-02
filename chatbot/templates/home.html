@@ -1,0 +1,16 @@
+<!-- home.html -->
+{% extends 'base.html' %} {% block content %}
+<div class="container mt-5">
+    <div class="jumbotron text-center">
+        {% if user.is_authenticated %}
+        <h1 class="display-4">Welcome, {{ user.username }}!</h1>
+        {% else %}
+        <h1 class="display-4">Welcome!</h1>
+        {% endif %}
+        <p class="lead">Generative AI Chatbot with Gemini: Engage in conversations with our advanced AI model, powered by Gemini. Whether you need assistance, information, or just want to chat, Gemini is here to help!</p>
+        <hr class="my-4">
+        <p>Get started by typing your message below in the chat interface, and let Gemini respond to you with intelligent answers.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'chat' %}" role="button">Start Chatting</a>
+    </div>
+</div>
+{% endblock %}
