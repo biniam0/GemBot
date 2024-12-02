@@ -1,10 +1,46 @@
-{% extends "base.html" %} {% block content %}
+{% extends 'base.html' %} {% block content %}
+<div
+  class="container mt-5 p-4 border rounded shadow-lg"
+  style="max-width: 500px; margin-top: 120px !important; margin: auto"
+>
+  <h2 class="text-center mb-4">Register</h2>
+  <form method="POST">
+    {% csrf_token %}
 
-<h2>Register</h2>
-<form method="POST" style="margin-top: 100px;">
-  {% csrf_token %} {{ form.as_p }}
-  <!-- Render the form fields -->
-  <button type="submit">Register</button>
-</form>
+    <!-- Username Field -->
+    <div class="form-group row">
+      <label for="id_username" class="col-sm-3 col-form-label font-weight-bold"
+        >Username</label
+      >
+      <div class="col-sm-9">{{ form.username }}</div>
+    </div>
 
-{% endblock content %}
+    <!-- Email Field -->
+    <div class="form-group row">
+      <label for="id_email" class="col-sm-3 col-form-label font-weight-bold"
+        >Email</label
+      >
+      <div class="col-sm-9">{{ form.email }}</div>
+    </div>
+
+    <!-- Password Field -->
+    <div class="form-group row">
+      <label for="id_password1" class="col-sm-3 col-form-label font-weight-bold"
+        >Password</label
+      >
+      <div class="col-sm-9">{{ form.password1 }}</div>
+    </div>
+
+    <!-- Confirm Password Field -->
+    <div class="form-group row">
+      <label for="id_password2" class="col-sm-3 col-form-label font-weight-bold"
+        >Confirm Password</label
+      >
+      <div class="col-sm-9">{{ form.password2 }}</div>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+  </form>
+</div>
+{% endblock %}

@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.cache import never_cache
+# To force refresh
+from django.http import HttpResponseRedirect
+from django.urls import reverse
+from django.utils.cache import add_never_cache_headers
+
 from .forms import CustomUserCreationForm
 from .models import Chat
 
@@ -39,6 +45,13 @@ def userLogin(request):
     #         login(request, user)
     #         return JsonResponse({'message': 'Login successful'})
     # return JsonResponse({'error': 'Invalid credentials'})
+
+
+def userLogout(request):
+    logout(request)
+    response = HttpResponseRedirect(reverse("home"))
+    add_never_cache_headers(response)
+    return redirect('home')
 
 
 @login_required
@@ -95,7 +108,7 @@ def chatHistory(request):
     chats = Chat.objects.all().order_by('-timestamp')
     return render(request, "history.html", {"chats": chats})
 
-
+@never_cache
 def home(request):
     response = render(request, 'home.html', {'user': request.user})
     response['Cache-Control'] = 'no-store'
