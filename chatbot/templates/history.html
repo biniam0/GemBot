@@ -4,7 +4,7 @@
 <div class="container mt-5 pt-5">
   <h1 class="text-center mb-4">Chat History</h1>
   <div class="list-group">
-    {% for chat in chats %}
+    {% if user.is_authenticated %} {% if chats %} {% for chat in chats %}
     <div class="list-group-item p-4 mb-3 border rounded">
       <div class="d-flex justify-content-between">
         <h5 class="mb-1"><strong>You:</strong> {{ chat.message }}</h5>
@@ -12,7 +12,14 @@
       </div>
       <p class="mb-1"><strong>AI:</strong> {{ chat.response }}</p>
     </div>
-    {% endfor %}
+    {% endfor %} {% else %}
+    <p>No chat history available.</p>
+    {% endif %} {% else %}
+    <p>
+      You must be logged in to view your chat history.
+      <a href="{% url 'login' %}">Login here</a>
+    </p>
+    {% endif %}
   </div>
 </div>
 

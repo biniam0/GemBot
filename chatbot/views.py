@@ -79,11 +79,15 @@ def chatWithBot(request):
             response = chat_session.send_message(
                 user_message)._result.candidates[0].content.parts[0].text
 
-            chat_record = Chat(
-                message=user_message,
-                response=response
-            )
-            chat_record.save()  # Save the record to the database
+            if request.user.is_authenticated:
+                Chat.objects.create(user=request.user,
+                                    message=user_message, response=response)
+            # chat_record = Chat(
+
+            #     message=user_message,
+            #     response=response
+            # )
+            # chat_record.save()  # Save the record to the database
         except KeyError as e:
             return JsonResponse({'error': f'Gemini API error: {str(e)}'}, status=500)
         except Exception as e:
@@ -105,8 +109,12 @@ def chatWithBot(request):
 
 @login_required
 def chatHistory(request):
-    chats = Chat.objects.all().order_by('-timestamp')
-    return render(request, "history.html", {"chats": chats})
+    if request.user.is_authenticated:
+        chats = Chat.objects.filter(user=request.user).order_by('-timestamp')
+        return render(request, "history.html", {"chats": chats})
+    else:
+        return redirect('login')
+
 
 @never_cache
 def home(request):
