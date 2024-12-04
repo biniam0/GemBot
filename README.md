@@ -18,30 +18,30 @@ An interactive web application where users can chat with an AI model (powered by
 ## Setup Instructions
 
 1. Clone the Repository:
-- git clone <repository-url>
-- cd <repository-folder> 
+- `git clone <repository-url>`
+- `cd <repository-folder> `
 
 2. Set Up Environment Variables:
 - Create a .env file in the project root:
-- API_KEY=your-secret-api-key
-- Add .env to .gitignore to prevent accidental commits.
+- `API_KEY=your-secret-api-key`
+- Add `.env` to `.gitignore` to prevent accidental commits.
 
 3. Install Dependencies:
-- pip install -r requirements.txt
+- `pip install -r requirements.txt`
 
 4. Run Migrations:
-- python manage.py migrate
+- `python manage.py migrate`
 
 5. Start the Server:
-- python manage.py runserver
-- Access the Application: Open http://127.0.0.1:8000/ in your browser.
+- `python manage.py runserver`
+- Access the Application: Open `http://127.0.0.1:8000/` in your browser.
 
 ## Usage
 1. Authentication:
 - Login to access chat history and save new chats.
 - Logout to access the public chat functionality without saving history.
 
-3. Chat with AI:
+2. Chat with AI:
 - Type a message in the chat box and click "Send."
 - Receive a response formatted with Markdown.
 
@@ -50,8 +50,7 @@ An interactive web application where users can chat with an AI model (powered by
 - Logged-in users can view their past conversations.
 - Environment Variables
 - Ensure the following environment variables are set:
-
-> API_KEY: Your Gemini AI API key.
+ > `API_KEY: Your Gemini AI API key`
 
 ## Future Enhancements:
 - Add support for multiple AI models.
