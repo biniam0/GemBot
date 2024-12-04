@@ -10,7 +10,7 @@
         <h5 class="mb-1"><strong>You:</strong> {{ chat.message }}</h5>
         <small class="text-muted">{{ chat.timestamp }}</small>
       </div>
-      <p class="mb-1"><strong>AI:</strong> {{ chat.response }}</p>
+      <p class="mb-1"><strong>AI:</strong> {{ chat.response|safe }}</p>
     </div>
     {% endfor %} {% else %}
     <p>No chat history available.</p>

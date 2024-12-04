@@ -8,8 +8,7 @@ from django.views.decorators.cache import never_cache
 from .forms import CustomUserCreationForm
 from .models import Chat
 
-import os
-import json
+import markdown
 import google.generativeai as genai
 
 genai.configure(api_key="AIzaSyDm8-wHQ142JBXN54AgD3tv_gELp-1WxUw")
@@ -32,6 +31,13 @@ def userLogin(request):
     return render(request, 'login')
 
 
+def formatResponse(response):
+    """
+        Formats the AI response using Markdown for enhanced readability.
+    """
+    return markdown.markdown(response)
+
+
 @login_required
 def chatWithBot(request):
     # Call the Gemini AI model here with user_message
@@ -48,25 +54,27 @@ def chatWithBot(request):
     )
 
     chat_session = model.start_chat(history=[])
-    response = None
+    formatted_response = None
 
     if request.method == "POST":
         user_message = request.POST.get("message")
-        response = f"You said: {user_message}"  # Simple echo response
         try:
             response = chat_session.send_message(
                 user_message)._result.candidates[0].content.parts[0].text
 
+            # Format response using Markdown
+            formatted_response = formatResponse(response)
+
             if request.user.is_authenticated:
                 Chat.objects.create(user=request.user,
-                                    message=user_message, response=response)
+                                    message=user_message, response=formatted_response)
 
         except KeyError as e:
             return JsonResponse({'error': f'Gemini API error: {str(e)}'}, status=500)
         except Exception as e:
             return JsonResponse({'error': f'An error occured: {str(e)}'})
 
-    return render(request, "chat.html", {"response": response})
+    return render(request, "chat.html", {"response": formatted_response})
 
 
 @login_required

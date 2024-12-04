@@ -10,8 +10,6 @@
             <!-- Display the logged-in user's name -->
             {% if user.is_authenticated %}
                 <p class="text-center text-muted">Logged in as: <strong>{{ user.username }}</strong></p>
-            {% else %}
-                <p class="text-center text-muted">Logged in as: <strong>Guest</strong></p>
             {% endif %}
             
             <form action="" method="POST">
@@ -24,7 +22,7 @@
 
             {% if response %}
                 <div id="responseBox" class="response-box mt-4 p-3 bg-light border rounded">
-                    <strong>AI: </strong> {{ response }}
+                    <strong>AI: </strong> {{ response|safe }}
                 </div>
             {% endif %}
         </div>
