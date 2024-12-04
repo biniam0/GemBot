@@ -36,9 +36,6 @@ An interactive web application where users can chat with an AI model (powered by
 - `python manage.py runserver`
 - Access the Application: Open `http://127.0.0.1:8000/` in your browser.
 
-6. Set your `API_KEY`
-- > `API_KEY: Your Gemini AI API key`
-
 ## Usage
 1. Authentication:
 - Login to access chat history and save new chats.
@@ -52,7 +49,8 @@ An interactive web application where users can chat with an AI model (powered by
 
 - Logged-in users can view their past conversations.
 - Environment Variables
-- Ensure the following environment variables are set
+- Ensure the following environment variables are set:
+ > `API_KEY: Your Gemini AI API key`
 
 ## Future Enhancements:
 - Add support for multiple AI models.
