@@ -31,18 +31,8 @@ def register(request):
 def userLogin(request):
     return render(request, 'login')
 
-    # data = json.loads(request.body)
-    # username = data["username"]
-    # password = data["password"]
-    # if request.method == "POST":
-    #     user = authenticate(username=username, password=password)
-    #     if user:
-    #         login(request, user)
-    #         return JsonResponse({'message': 'Login successful'})
-    # return JsonResponse({'error': 'Invalid credentials'})
 
-
-@never_cache
+@login_required
 def chatWithBot(request):
     # Call the Gemini AI model here with user_message
     generation_config = genai.GenerationConfig(
@@ -70,12 +60,7 @@ def chatWithBot(request):
             if request.user.is_authenticated:
                 Chat.objects.create(user=request.user,
                                     message=user_message, response=response)
-            # chat_record = Chat(
 
-            #     message=user_message,
-            #     response=response
-            # )
-            # chat_record.save()  # Save the record to the database
         except KeyError as e:
             return JsonResponse({'error': f'Gemini API error: {str(e)}'}, status=500)
         except Exception as e:
@@ -83,17 +68,6 @@ def chatWithBot(request):
 
     return render(request, "chat.html", {"response": response})
 
-
-# def chatHistory(request):
-#     # if request.user.is_authenticated:
-#     chats = Chat.objects.filter(user=request.user).order_by('-timestamp')
-#     history = [{
-#         'message': chat.message,
-#         'response': chat.response,
-#         'timestamp': chat.timestamp
-#     } for chat in chats]
-#     return JsonResponse({'chat_history': history})
-#     # return JsonResponse({'error': 'Unauthorized'}, status=401)
 
 @login_required
 def chatHistory(request):
@@ -104,6 +78,5 @@ def chatHistory(request):
         return redirect('login')
 
 
-@never_cache
 def home(request):
     return render(request, 'home.html')
