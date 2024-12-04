@@ -1,19 +1,53 @@
 <!-- home.html -->
 {% extends 'base.html' %} {% block content %}
-<div class="container mt-5">
+<style>
+  .card {
+    border-radius: 15px; /* Rounded corners for the box */
+  }
+
+  .feature-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transitions */
+    border-radius: 10px; /* Rounded corners for each feature card */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px); /* Slight hover lift effect */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* Stronger shadow on hover */
+  }
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .card-text {
+    font-size: 1rem;
+    color: #666;
+  }
+</style>
+
+<div class="container mt-2">
   <div class="card p-4 shadow-lg text-center">
     {% comment %} {% if user.is_authenticated %}
     <h1 class="display-4">Welcome, {{ user.username }}!</h1>
     {% else %} {% endcomment %}
     <h1 class="display-4">Welcome!</h1>
     {% comment %} {% endif %} {% endcomment %}
-    <p class="lead">
+    <p
+      style="font-size: 1.15rem; font-weight: 300; color: #6c757d"
+      class="lead lead-ligth"
+    >
       Generative AI Chatbot with Gemini: Engage in conversations with our
       advanced AI model, powered by Gemini. Whether you need assistance,
       information, or just want to chat, Gemini is here to help!
     </p>
     <hr class="my-4" />
-    <p>
+    <p class="lead">
       Get started by typing your message below in the chat interface, and let
       Gemini respond to you with intelligent answers.
     </p>
@@ -21,42 +55,43 @@
       >Start Chatting</a
     >
   </div>
-  <!-- Upcoming Features Section -->
-  <div class="container mt-2">
-    <!-- Main Box -->
-    <div class="card p-4 shadow-lg">
-      <h1
-        class="display-6 text-center text-primary font-weight-light mt-5 mb-3"
-      >
-        Coming Up Features
-      </h1>
+</div>
+<!-- Upcoming Features Section -->
+<div class="container mt-4">
+  <!-- Main Box -->
+  <div class="card p-4 shadow-lg">
+    <h1
+      style="font-size: 2rem; font-weight: 300"
+      class="display-6 text-center text-primary font-weight-light mt-5 mb-3"
+    >
+      Coming Up Features
+    </h1>
 
-      <div class="row">
-        <!-- OAuth Feature -->
-        <div class="col-md-6 mb-4">
-          <div class="card feature-card">
-            <div class="card-body">
-              <h5 class="card-title">OAuth Integration</h5>
-              <p class="card-text">
-                Soon, we will be introducing OAuth authentication to provide a
-                secure and seamless login experience. Stay tuned for easy
-                sign-ins using your favorite accounts!
-              </p>
-            </div>
+    <div class="row">
+      <!-- OAuth Feature -->
+      <div class="col-md-6 mb-4">
+        <div class="card feature-card">
+          <div class="card-body">
+            <h5 class="card-title">OAuth Integration</h5>
+            <p class="card-text">
+              Soon, we will be introducing OAuth authentication to provide a
+              secure and seamless login experience. Stay tuned for easy sign-ins
+              using your favorite accounts!
+            </p>
           </div>
         </div>
+      </div>
 
-        <!-- New Tab Feature -->
-        <div class="col-md-6 mb-4">
-          <div class="card feature-card">
-            <div class="card-body">
-              <h5 class="card-title">Adding New Tab</h5>
-              <p class="card-text">
-                We are working on adding a new tab to the system, bringing
-                additional functionality and more ways for you to interact with
-                the chatbot. More details coming soon!
-              </p>
-            </div>
+      <!-- New Tab Feature -->
+      <div class="col-md-6 mb-4">
+        <div class="card feature-card">
+          <div class="card-body">
+            <h5 class="card-title">Adding New Tab</h5>
+            <p class="card-text">
+              We are working on adding a new tab to the system, bringing
+              additional functionality and more ways for you to interact with
+              the chatbot. More details coming soon!
+            </p>
           </div>
         </div>
       </div>
