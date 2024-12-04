@@ -10,7 +10,10 @@
             <!-- Display the logged-in user's name -->
             {% if user.is_authenticated %}
                 <p class="text-center text-muted">Logged in as: <strong>{{ user.username }}</strong></p>
+            {% else %}
+                <p class="text-center text-muted">Logged in as: <strong>Guest</strong></p>
             {% endif %}
+            
             <form action="" method="POST">
                 {% csrf_token %}
                 <div class="mb-3">

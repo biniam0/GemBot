@@ -1,13 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import login, logout
 from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.cache import never_cache
-# To force refresh
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.utils.cache import add_never_cache_headers
 
 from .forms import CustomUserCreationForm
 from .models import Chat
@@ -20,7 +16,6 @@ genai.configure(api_key="AIzaSyDm8-wHQ142JBXN54AgD3tv_gELp-1WxUw")
 
 
 # Create your views here.
-@login_required
 def register(request):
     if request.method == 'POST':
         form = CustomUserCreationForm(request.POST)
@@ -47,14 +42,7 @@ def userLogin(request):
     # return JsonResponse({'error': 'Invalid credentials'})
 
 
-def userLogout(request):
-    logout(request)
-    response = HttpResponseRedirect(reverse("home"))
-    add_never_cache_headers(response)
-    return redirect('home')
-
-
-@login_required
+@never_cache
 def chatWithBot(request):
     # Call the Gemini AI model here with user_message
     generation_config = genai.GenerationConfig(
@@ -118,6 +106,4 @@ def chatHistory(request):
 
 @never_cache
 def home(request):
-    response = render(request, 'home.html', {'user': request.user})
-    response['Cache-Control'] = 'no-store'
-    return response
+    return render(request, 'home.html')
