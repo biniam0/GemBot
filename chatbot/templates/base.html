@@ -26,16 +26,28 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" href="{% url 'home' %}">Home</a>
+            <form action="{% url 'home' %}" style="display: inline">
+              {% csrf_token %}
+              <button type="submit" class="btn blue">Home</button>
+            </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'history' %}">History</a>
+            <form action="{% url 'history' %}" style="display: inline">
+              {% csrf_token %}
+              <button type="submit" class="btn blue">History</button>
+            </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'register' %}">Register</a>
+            <form action="{% url 'register' %}" style="display: inline">
+              {% csrf_token %}
+              <button type="submit" class="btn blue">Register</button>
+            </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">LogIn</a>
+            <form action="{% url 'login' %}" style="display: inline">
+              {% csrf_token %}
+              <button type="submit" class="btn blue">Login</button>
+            </form>
           </li>
           <li class="nav-item">
             <form
