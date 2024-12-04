@@ -1,7 +1,7 @@
 <!-- home.html -->
 {% extends 'base.html' %} {% block content %}
 <div class="container mt-5">
-  <div class="jumbotron text-center">
+  <div class="card p-4 shadow-lg text-center">
     {% comment %} {% if user.is_authenticated %}
     <h1 class="display-4">Welcome, {{ user.username }}!</h1>
     {% else %} {% endcomment %}
@@ -20,6 +20,47 @@
     <a class="btn btn-primary btn-lg" href="{% url 'chat' %}" role="button"
       >Start Chatting</a
     >
+  </div>
+  <!-- Upcoming Features Section -->
+  <div class="container mt-2">
+    <!-- Main Box -->
+    <div class="card p-4 shadow-lg">
+      <h1
+        class="display-6 text-center text-primary font-weight-light mt-5 mb-3"
+      >
+        Coming Up Features
+      </h1>
+
+      <div class="row">
+        <!-- OAuth Feature -->
+        <div class="col-md-6 mb-4">
+          <div class="card feature-card">
+            <div class="card-body">
+              <h5 class="card-title">OAuth Integration</h5>
+              <p class="card-text">
+                Soon, we will be introducing OAuth authentication to provide a
+                secure and seamless login experience. Stay tuned for easy
+                sign-ins using your favorite accounts!
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- New Tab Feature -->
+        <div class="col-md-6 mb-4">
+          <div class="card feature-card">
+            <div class="card-body">
+              <h5 class="card-title">Adding New Tab</h5>
+              <p class="card-text">
+                We are working on adding a new tab to the system, bringing
+                additional functionality and more ways for you to interact with
+                the chatbot. More details coming soon!
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 {% endblock %}

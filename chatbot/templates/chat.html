@@ -6,10 +6,10 @@
     <!-- Chat Container -->
     <div class="container" style="margin-top: 150px;">
         <div class="chat-container card p-4 mx-auto" style="max-width: 600px;">
-            <h2 class="text-center mb-4">How can I help?</h2>
             <!-- Display the logged-in user's name -->
             {% if user.is_authenticated %}
-                <p class="text-center text-muted">Logged in as: <strong>{{ user.username }}</strong></p>
+                {% comment %} <p class="text-center text-muted">Logged in as: <strong>{{ user.username }}</strong></p> {% endcomment %}
+                <h2 class="text-center mb-4">How can I help you <strong>{{ user.username }}</strong>?</h2>
             {% endif %}
             
             <form action="" method="POST">
