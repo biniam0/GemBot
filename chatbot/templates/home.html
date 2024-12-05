@@ -29,9 +29,23 @@
     font-size: 1rem;
     color: #666;
   }
+  .btn {
+    background-color: #007bff; /* Light blue background */
+    border: none;
+    color: white; /* Blue text */
+    margin: 1px 5px; /* Add some spacing between buttons */
+    padding: 8px 15px; /* Adjust padding for consistent look */
+    border-radius: 5px; /* Slightly rounded corners */
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .btn:hover {
+    background-color: white; /* Slightly darker blue on hover */
+    color: black; /* Darker text on hover */
+  }
 </style>
 
-<div class="container mt-2">
+<div class="container mt-5">
   <div class="card p-4 shadow-lg text-center">
     {% comment %} {% if user.is_authenticated %}
     <h1 class="display-4">Welcome, {{ user.username }}!</h1>
@@ -51,9 +65,7 @@
       Get started by typing your message below in the chat interface, and let
       Gemini respond to you with intelligent answers.
     </p>
-    <a class="btn btn-primary btn-lg" href="{% url 'chat' %}" role="button"
-      >Start Chatting</a
-    >
+    <a class="btn" href="{% url 'chat' %}" role="button">Start Chatting</a>
   </div>
 </div>
 <!-- Upcoming Features Section -->
