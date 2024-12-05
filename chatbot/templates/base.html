@@ -16,6 +16,20 @@
           255,
           0.85
         ); /* Adjust opacity (0 is fully transparent, 1 is fully opaque) */
+        .navbar-nav .btn {
+          background-color: #007bff; /* Light blue background */
+          border: none;
+          color: white; /* Blue text */
+          margin: 1px 5px; /* Add some spacing between buttons */
+          padding: 8px 15px; /* Adjust padding for consistent look */
+          border-radius: 5px; /* Slightly rounded corners */
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .navbar-nav .btn:hover {
+          background-color: white; /* Slightly darker blue on hover */
+          color: black; /* Darker text on hover */
+        }
       }
     </style>
   </head>
@@ -40,25 +54,25 @@
           <li class="nav-item active">
             <form action="{% url 'home' %}" style="display: inline">
               {% csrf_token %}
-              <button type="submit" class="btn blue">Home</button>
+              <button type="submit" class="btn">Home</button>
             </form>
           </li>
           <li class="nav-item">
             <form action="{% url 'history' %}" style="display: inline">
               {% csrf_token %}
-              <button type="submit" class="btn blue">History</button>
+              <button type="submit" class="btn">History</button>
             </form>
           </li>
           <li class="nav-item">
             <form action="{% url 'register' %}" style="display: inline">
               {% csrf_token %}
-              <button type="submit" class="btn blue">Register</button>
+              <button type="submit" class="btn">Register</button>
             </form>
           </li>
           <li class="nav-item">
             <form action="{% url 'login' %}" style="display: inline">
               {% csrf_token %}
-              <button type="submit" class="btn blue">Login</button>
+              <button type="submit" class="btn">Login</button>
             </form>
           </li>
           <li class="nav-item">
@@ -68,7 +82,7 @@
               style="display: inline"
             >
               {% csrf_token %}
-              <button type="submit" class="btn blue">Logout</button>
+              <button type="submit" class="btn">Logout</button>
             </form>
           </li>
         </ul>
