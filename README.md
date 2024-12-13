@@ -57,6 +57,9 @@ An interactive web application where users can chat with an AI model (powered by
  > `API_KEY: Your Gemini AI API key`
 
 ## Future Enhancements:
-- Add support for multiple AI models.
+- OAuth Intergration to provide secure and seamless login 
+experience
+- Adding New Tab which allow topic based conversation
+- Expanding to other databases for scalability.
 - Improve user interface with additional styling.
 - Enable exporting chat history as a file.
