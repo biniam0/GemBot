@@ -1,19 +1,28 @@
 {% extends 'base.html' %} {% block content %}
 <div class="container mt-5">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="padding-top: 100px">
     <div class="col-md-6">
-      <div class="card shadow-sm">
-        <div class="card-header bg-primary text-white text-center">
-          <h2>Login</h2>
+      <div class="card shadow-sm border rounded shadow-lg">
+        <div class="card-header bg-white text-center">
+          <h2 class="text-primary fw-bold">Login</h2>
         </div>
         <div class="card-body">
           <form method="POST" class="needs-validation" novalidate>
             {% csrf_token %}
-            <div class="form-group">{{ form.as_p }}</div>
-            <button type="submit" class="btn btn-primary btn-block">
-              Login
-            </button>
+            <div class="form-group mb-3">{{ form.as_p }}</div>
+            <button type="submit" class="btn btn-primary w-100">Login</button>
           </form>
+        </div>
+        <div class="card-footer text-center bg-light">
+          <p class="mb-0 text-muted">
+            Don’t have an account?
+            <a
+              href="{% url 'register' %}"
+              class="text-primary text-decoration-none"
+            >
+              Register here
+            </a>
+          </p>
         </div>
       </div>
     </div>
